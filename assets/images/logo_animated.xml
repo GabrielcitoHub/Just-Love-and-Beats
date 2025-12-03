@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="logo_animated.png">
+	<!-- Created with Aseprite FNF XML Exporter Unnoficial Plugin -->
+	<!-- <link> -->
+	<SubTexture name="boopleft0000" x="0" y="0" width="224" height="160" frameX="21" frameY="2" frameWidth="245" frameHeight="162"/>
+	<SubTexture name="boopleft0001" x="224" y="0" width="224" height="160" frameX="17" frameY="4" frameWidth="241" frameHeight="164"/>
+	<SubTexture name="boopleft0002" x="448" y="0" width="224" height="160" frameX="20" frameY="8" frameWidth="244" frameHeight="168"/>
+	<SubTexture name="boopleft0003" x="0" y="160" width="224" height="160" frameX="20" frameY="6" frameWidth="244" frameHeight="166"/>
+	<SubTexture name="boopright0000" x="224" y="160" width="224" height="160" frameX="21" frameY="2" frameWidth="245" frameHeight="162"/>
+	<SubTexture name="boopright0001" x="448" y="160" width="224" height="160" frameX="10" frameY="9" frameWidth="234" frameHeight="169"/>
+	<SubTexture name="boopright0002" x="0" y="320" width="224" height="160" frameX="12" frameY="10" frameWidth="236" frameHeight="170"/>
+	<SubTexture name="boopright0003" x="224" y="320" width="224" height="160" frameX="17" frameY="8" frameWidth="241" frameHeight="168"/>
+</TextureAtlas>
