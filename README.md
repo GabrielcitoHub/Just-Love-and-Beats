@@ -26,7 +26,7 @@ Any other platform: (without git)
 Download the code as a zip, unzip, select all files on folder, zip,
 rename the ".zip" in the filename to ".love", drag that to love.exe, done!
 
-Any other platform:: (with git)
+Any other platform: (with git)
 Clone the reposistory, drag folder to love.exe, done!
 
 Android: (with git and termux) (NOT SUPPORTED YET)
