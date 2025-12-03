@@ -1,4 +1,4 @@
-A JS&B like game made in Love2D!
+A Just Shapes and Beats like game made in Love2D!
 
 # TODO:
 * Create start song
