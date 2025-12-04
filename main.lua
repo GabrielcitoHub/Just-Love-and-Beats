@@ -10,6 +10,13 @@ Timer = require("libs/timer")
 Utils = require("libs/utils")
 _G.settings = {}
 
+SHADERS = {}
+SHADERS.white = "assets/shaders/white.glsl"
+
+for key,shader in pairs(SHADERS) do
+    SHADERS[key] = love.graphics.newShader(shader)
+end
+
 function _G.loadSettings(cfg)
     for _,opt in ipairs(cfg) do
         local name = opt.name
@@ -27,6 +34,7 @@ local function setupStateManager(stsManager)
 end
 
 function love.load()
+    love.graphics.setDefaultFilter("nearest", "nearest")
     setupStateManager(stateManager)
     
     --G.audio = require("resources/libs/wave")
