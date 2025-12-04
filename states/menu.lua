@@ -1,36 +1,29 @@
 local state = {}
-local self = state
-self.timer = 0
-self.boops = 0
-self.boopleft = true
+state.boopleft = true
 
-function self:load()
-    local logo = Sprite:new("logo", "assets/images/logo_animated.png")
-    self.xml = logo:newAnimation("xml","assets/images/logo_animated.xml", true)
-    function self.xml:ended()
-        self.boops = self.boops + 1
+function state:load()
+    state.logo = Sprite:new("logo", "assets/images/logo_animated.png")
+    state.logo:setScale(3)
+    state.xml = state.logo:newAnimation("xml","assets/images/logo_animated.xml", true)
+    function state.xml:ended()
+        state.boopleft = not state.boopleft
     end
-    self.xml:play("boopleft",100)
-    logo:center()
+    state.xml:play("boopleft",100)
+    state.logo:center()
 end
 
 
 
-function self:keypressed(key)
+function state:keypressed(key)
     stateManager:loadState("level")
 end
 
-function self:update(dt)
-    self.timer = self.timer + 1 * dt
-    if self.timer > 1 then
-        self.timer = 0
-        self.boopleft = not self.boopleft
-    end
-    if self.boopleft then
-        self.xml:play("boopleft",120)
+function state:update(dt)
+    if state.boopleft then
+        state.xml:play("boopleft",120)
     else
-        self.xml:play("boopright",120)
+        state.xml:play("boopright",120)
     end
 end
 
-return self
+return state
