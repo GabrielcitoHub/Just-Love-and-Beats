@@ -107,6 +107,7 @@ function self:handleDash(dt)
             self.particles.rate = 20
             self.particles.spread = 0.2
             self.particles.speed = 5
+            self.particles.shader = nil
         end
     end
 end
@@ -115,6 +116,10 @@ function self:trydash()
     if self.dashing or self.dashtimer > 0 then return end
     self.dashing = true
     self.dashtimer = self.dashcooldown
+    if self.particles then
+        -- Shaders are WAY too laggy for particles
+        -- self.particles.shader = SHADERS.white
+    end
 end
 
 function self:keypressed(key)
@@ -125,6 +130,24 @@ function self:update(dt)
     self:handleDash(dt)
     self:handleMovement(dt)
     self:keepInScreen(dt)
+end
+
+function self:_draw()
+    if self.particles then
+        self.particles:draw()
+    end
+end
+
+function self:draw()
+    if self.dashing then
+        love.graphics.push()
+        love.graphics.setColor(0,0,0,2*self.dashtimer)
+        love.graphics.setShader(SHADERS.white)
+        self.sprite:draw()
+        love.graphics.setShader()
+        love.graphics.pop()
+    end
+    self:_draw()
 end
 
 return self end
