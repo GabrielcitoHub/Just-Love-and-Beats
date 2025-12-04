@@ -58,15 +58,19 @@ return function(path, x, y, w, h, extra) extra = extra or {} local self = {
 
             local angle = (math.pi * 2) * (love.math.random() * self.spread - self.spread / 2)
             local speed = self.speed + love.math.random(-self.randomness, self.randomness)
-
-            table.insert(self.particles, {
+            local particle = {
                 x = self.x + love.math.random(-self.w/2, self.w/2),
                 y = self.y + love.math.random(-self.h/2, self.h/2),
                 vx = math.cos(angle) * speed,
                 vy = math.sin(angle) * speed,
                 life = self.lifespan,
                 r = r, g = g, b = b, a = a
-            })
+            }
+            if self.shader then
+                particle.shader = self.shader
+            end
+
+            table.insert(self.particles, particle)
         end
     end
 
@@ -97,7 +101,17 @@ return function(path, x, y, w, h, extra) extra = extra or {} local self = {
             local alpha = p.a * (p.life / self.lifespan) -- fade out
 
             love.graphics.setColor(p.r, p.g, p.b, alpha)
+            local hasShader = (p.shader and true) or false
+            
+            if hasShader then
+                love.graphics.setShader(p.shader)
+            end
+
             love.graphics.points(p.x, p.y)
+
+            if hasShader then
+                love.graphics.setShader()
+            end
         end
 
         love.graphics.setColor(1, 1, 1, 1)
