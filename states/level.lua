@@ -41,8 +41,8 @@ function self:update(dt)
 end
 
 function self:draw()
-    for _,plr in pairs(self.players) do
-        plr.particles:draw()
+    for _,plr in ipairs(self.players) do
+        plr:draw()
     end
 end
 
