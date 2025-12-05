@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="button.png">
+	<!-- Created with Aseprite FNF XML Exporter Unnoficial Plugin -->
+	<!-- <link> -->
+	<SubTexture name="deselect0000" x="48" y="16" width="48" height="16" frameX="41" frameY="2" frameWidth="89" frameHeight="18"/>
+	<SubTexture name="deselect0001" x="96" y="16" width="48" height="16" frameX="41" frameY="3" frameWidth="89" frameHeight="19"/>
+	<SubTexture name="deselect0002" x="144" y="16" width="48" height="16" frameX="41" frameY="4" frameWidth="89" frameHeight="20"/>
+	<SubTexture name="deselect0003" x="0" y="32" width="48" height="16" frameX="45" frameY="6" frameWidth="93" frameHeight="22"/>
+	<SubTexture name="deselect0004" x="48" y="32" width="48" height="16" frameX="0" frameY="8" frameWidth="48" frameHeight="24"/>
+	<SubTexture name="idle0000" x="0" y="0" width="48" height="16" frameX="0" frameY="6" frameWidth="48" frameHeight="22"/>
+	<SubTexture name="select0000" x="48" y="0" width="48" height="16" frameX="45" frameY="6" frameWidth="93" frameHeight="22"/>
+	<SubTexture name="select0001" x="96" y="0" width="48" height="16" frameX="41" frameY="4" frameWidth="89" frameHeight="20"/>
+	<SubTexture name="select0002" x="144" y="0" width="48" height="16" frameX="41" frameY="3" frameWidth="89" frameHeight="19"/>
+	<SubTexture name="select0003" x="0" y="16" width="48" height="16" frameX="41" frameY="2" frameWidth="89" frameHeight="18"/>
+</TextureAtlas>
