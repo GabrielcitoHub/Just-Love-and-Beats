@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="numbers.png">
+	<!-- Created with Aseprite FNF XML Exporter Unnoficial Plugin -->
+	<!-- <link> -->
+	<SubTexture name="black0000" x="42" y="15" width="9" height="15" frameX="4" frameY="1" frameWidth="13" frameHeight="16"/>
+	<SubTexture name="black0001" x="0" y="30" width="11" height="13" frameX="2" frameY="2" frameWidth="13" frameHeight="15"/>
+	<SubTexture name="black0002" x="14" y="30" width="10" height="12" frameX="2" frameY="2" frameWidth="12" frameHeight="14"/>
+	<SubTexture name="black0003" x="28" y="30" width="10" height="13" frameX="3" frameY="3" frameWidth="13" frameHeight="16"/>
+	<SubTexture name="black0004" x="42" y="30" width="11" height="12" frameX="3" frameY="2" frameWidth="14" frameHeight="14"/>
+	<SubTexture name="black0005" x="0" y="45" width="7" height="12" frameX="5" frameY="2" frameWidth="12" frameHeight="14"/>
+	<SubTexture name="black0006" x="14" y="45" width="11" height="12" frameX="3" frameY="2" frameWidth="14" frameHeight="14"/>
+	<SubTexture name="green0000" x="0" y="0" width="13" height="14" frameX="1" frameY="1" frameWidth="14" frameHeight="15"/>
+	<SubTexture name="green0001" x="14" y="0" width="13" height="13" frameX="1" frameY="2" frameWidth="14" frameHeight="15"/>
+	<SubTexture name="green0002" x="28" y="0" width="11" height="13" frameX="1" frameY="2" frameWidth="12" frameHeight="15"/>
+	<SubTexture name="green0003" x="42" y="0" width="12" height="12" frameX="1" frameY="3" frameWidth="13" frameHeight="15"/>
+	<SubTexture name="green0004" x="0" y="15" width="12" height="13" frameX="1" frameY="2" frameWidth="13" frameHeight="15"/>
+	<SubTexture name="green0005" x="14" y="15" width="12" height="13" frameX="1" frameY="2" frameWidth="13" frameHeight="15"/>
+	<SubTexture name="green0006" x="28" y="15" width="14" height="12" frameX="1" frameY="2" frameWidth="15" frameHeight="14"/>
+</TextureAtlas>

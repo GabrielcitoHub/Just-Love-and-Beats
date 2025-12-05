@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="car.png">
+	<!-- Created with Aseprite FNF XML Exporter Unnoficial Plugin -->
+	<!-- <link> -->
+	<SubTexture name="car0000" x="0" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32"/>
+	<SubTexture name="car0001" x="32" y="0" width="32" height="32" frameX="0" frameY="0" frameWidth="32" frameHeight="32"/>
+</TextureAtlas>
