@@ -139,6 +139,8 @@ function self:_draw()
 end
 
 function self:draw()
+    self:_draw()
+    self.sprite:draw()
     if self.dashing then
         love.graphics.push()
         love.graphics.setColor(0,0,0,2*self.dashtimer)
@@ -147,7 +149,6 @@ function self:draw()
         love.graphics.setShader()
         love.graphics.pop()
     end
-    self:_draw()
 end
 
 return self end

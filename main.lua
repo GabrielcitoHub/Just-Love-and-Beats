@@ -45,7 +45,7 @@ function love.load()
     -- stateManager:loadState("options")
 
     -- Loads the first state
-    stateManager:loadState("level")
+    stateManager:loadState("menu")
 end
 
 function love.update(dt)
@@ -60,7 +60,7 @@ function love.keypressed(key)
 end
 
 function love.draw()
-    Sprite:draw()
+    -- Sprite:draw()
     stateManager:draw()
 
     if not settings["Show FPS"] then return end
