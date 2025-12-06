@@ -134,6 +134,8 @@ function state:pressButton(index)
         stateManager:loadState("level")
     elseif tag == "credits" then
         stateManager:loadState("credits", state)
+    elseif tag == "options" then
+        stateManager:loadState("options", state)
     end
 end
 

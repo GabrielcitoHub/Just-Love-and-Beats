@@ -144,9 +144,13 @@ function self:draw()
     if self.dashing then
         love.graphics.push()
         love.graphics.setColor(0,0,0,2*self.dashtimer)
-        love.graphics.setShader(SHADERS.white)
-        self.sprite:draw()
-        love.graphics.setShader()
+        if settings["Shaders"] then
+            love.graphics.setShader(SHADERS.white)
+            self.sprite:draw()
+            love.graphics.setShader()
+        else
+            self.sprite:draw()
+        end
         love.graphics.pop()
     end
 end

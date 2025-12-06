@@ -64,10 +64,10 @@ function state:load(extra)
         state.boopleft = not state.boopleft
     end
     state.xml:play("boopleft",100)
-    state.xml.current = extra.xml.current
     state.logo:setPosition(love.graphics:getWidth() / 3 - love.graphics:getWidth() / 4, love.graphics:getHeight() / 2 - love.graphics:getWidth() / 8)
 
     if extra then
+        state.xml.current = extra.xml.current
         state.prevselection = extra.selection
         state.boopleft = extra.boopleft
     end
@@ -175,8 +175,13 @@ function state:keypressed(key)
         state.authorlink = not state.authorlink
     elseif key == "escape" then
         soundManager:playSound("select3", "wav", {new = true})
-        state.selection = state.prevselection
-        stateManager:loadState("menu", state)
+        if state.prevselection then
+            state.selection = state.prevselection
+            stateManager:loadState("menu", state)
+        else
+            stateManager:loadState("menu")
+        end
+        
     end
 
     if key == "up" or key == "down" then
