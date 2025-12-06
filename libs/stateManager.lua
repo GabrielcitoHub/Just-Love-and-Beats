@@ -7,7 +7,6 @@ stateManager.debug = true
 stateManager.cachedStates = {}
 
 function stateManager:loadStateLocal(state, extra)
-    extra = extra or {}
     package.loaded["states." .. state] = nil
     self.state = require("states." .. state)
     if type(self.state) == "boolean" then
@@ -40,7 +39,7 @@ function stateManager:loadStateLocal(state, extra)
 
     -- Call state load function
     if self.stateFunctions.load then
-        self.state:load(extra)
+        self.state:load(extra or nil)
     end
 end
 

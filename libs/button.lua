@@ -5,6 +5,7 @@ return function(tag, path, x, y, w, h)
     h = h or 300
     local self = {
         tag = tag,
+        text = "",
         sprite = Sprite:new(tag, path, x, y),
         x = x,
         y = y,
@@ -17,10 +18,17 @@ return function(tag, path, x, y, w, h)
         y = y or self.y
         w = w or self.w
         h = h or self.h
+        local sx = w / self.sprite.image:getWidth()
+        local sy = h / self.sprite.image:getHeight()
+
         self.sprite.x = x
         self.sprite.y = y
-        self.sprite.sx = w / self.sprite.image:getWidth()
-        self.sprite.sy = h / self.sprite.image:getHeight()
+        self.sprite.sx = sx
+        self.sprite.sy = sy
         self.sprite:draw(x, y, w, h)
+
+        if self.text then
+            love.graphics.print(self.text, x, y + (h / 6), 0, sx, sy / 2)
+        end
     end
 return self end
