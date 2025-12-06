@@ -54,6 +54,8 @@ function state:load(oldstate)
         state.xml.current = oldstate.xml.current
         state:updateMenuSize(state.menu)
     end
+
+    soundManager:playMusic("Strolling Mastered","wav")
 end
 
 function state:updateMenuSize(menu)
@@ -68,20 +70,26 @@ end
 
 function state:updateKeypressMenu(menu, key)
     if menu == 1 then
+        soundManager:playSound("select3", "wav", {new = true})
         state.menu = 2
     elseif menu == 2 then
         if key == "return" then
+            soundManager:playSound("select3", "wav", {new = true})
             state:pressButton(state.selection)
         elseif key == "up" then
             state.selection = state.selection - 1
         elseif key == "down" then
             state.selection = state.selection + 1
         elseif key == "escape" then
+            soundManager:playSound("select3", "wav", {new = true})
             state.menu = 1
         end
 
-        if key == "up" or key == "down" or key == "return" then
+        if key == "up" or key == "down" then
             soundManager:playSound("cloud_poof", "wav", {new = true})
+        end
+
+        if key == "up" or key == "down" or key == "return" then
             state.selection = state:updateSelectedButton(state.selection)
         end
     end
@@ -105,6 +113,10 @@ function state:updateSelectedButton(selection)
             button.xml.current = 1
             button.xml:play("select",100)
         else
+            if button.xml.current >= #button.xml.frames then
+                -- This resets all the buttons, need to implement animation names first.
+                -- button.xml.current = 1
+            end
             button.xml:play("deselect",100)
         end
     end

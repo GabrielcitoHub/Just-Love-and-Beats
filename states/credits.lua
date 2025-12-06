@@ -33,7 +33,16 @@ function state:getcredits(path)
                 local ok, result = pcall(require, requirePath)
                 if ok then
                     if type(result.image) == "string" then
-                        result.image = love.graphics.newImage(result.image)
+                        if not Cache then Cache = {} end
+                        
+                        if not Cache[result.image] then
+                            local img = love.graphics.newImage(result.image)
+                            Cache[result.image] = img
+                            result.image = img
+                        else
+                            result.image = Cache[result.image]
+                        end
+                        
                     end
                     table.insert(credits, result)
                 else
@@ -138,12 +147,15 @@ function state:pressButton()
 
     local link = credit.link
     local authorlink = credit.author.link
-    
 
+    local success
     if state.authorlink and authorlink then
-        love.system.openURL(credit.author.link)
+        success = love.system.openURL(credit.author.link)
     elseif state.authorlink == false and link then
-        love.system.openURL(link)
+        success = love.system.openURL(link)
+    end
+    if success then
+        soundManager:playSound("select3", "wav", {new = true})
     end
 end
 
@@ -159,18 +171,24 @@ function state:keypressed(key)
     elseif key == "right" then
         state.selection = state.selection + 1
     elseif key == "lctrl" or key == "tab" then
+        soundManager:playSound("select3", "wav", {new = true})
         state.authorlink = not state.authorlink
     elseif key == "escape" then
+        soundManager:playSound("select3", "wav", {new = true})
         state.selection = state.prevselection
         stateManager:loadState("menu", state)
     end
 
     if key == "up" or key == "down" then
         state.selection2 = state:updateSelected2(state.selection2)
+        state.selection = state:updateSelected(state.selection)
+    end
+
+    if key == "left" or key == "right" then
+       soundManager:playSound("cloud_poof", "wav", {new = true})
     end
 
     if key == "left" or key == "right" or key == "return" then
-        soundManager:playSound("cloud_poof", "wav", {new = true})
         state.selection = state:updateSelected(state.selection)
     end
 end
@@ -186,12 +204,13 @@ end
 function state:draw()
     local err = "?"
 
-    local x = love.graphics.getWidth() / 1.8
+    local x = love.graphics.getWidth() / 2.4
     local y = love.graphics.getHeight() / 3
     local line = 0
 
     local function printLine(text, offset)
-        love.graphics.print(text, x, y + offset)
+        love.graphics.printf(text, x, y + offset, love.graphics:getWidth() / 2)
+        -- love.graphics.print(text, x, y + offset)
     end
 
     local section = state.credits[state.selection2]
