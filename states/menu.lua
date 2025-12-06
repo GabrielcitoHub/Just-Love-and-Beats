@@ -5,7 +5,8 @@ state.menu = 1
 state.selection = 1
 state.buttons = {}
 
-function state:load()
+function state:load(oldstate)
+    -- print(tostring(oldstate))
     -- Create the logo
     state.logo = Sprite:new("logo", "assets/images/logo_animated.png")
     state.logo:setScale(3)
@@ -19,13 +20,16 @@ function state:load()
     -- Create the buttons
     local buttonimg = "assets/images/menus/button.png"
     local buttonxml = "assets/images/menus/button.xml"
-    table.insert(state.buttons, buttons("storymode", buttonimg, love.graphics:getWidth() / 2))
+    table.insert(state.buttons, buttons("story", buttonimg, love.graphics:getWidth() / 2))
     table.insert(state.buttons, buttons("freeplay", buttonimg, love.graphics:getWidth() / 2))
     table.insert(state.buttons, buttons("party", buttonimg, love.graphics:getWidth() / 2))
+    table.insert(state.buttons, buttons("mods", buttonimg, love.graphics:getWidth() / 2))
     table.insert(state.buttons, buttons("options", buttonimg, love.graphics:getWidth() / 2))
+    table.insert(state.buttons, buttons("credits", buttonimg, love.graphics:getWidth() / 2))
 
     -- Load animations
     for i,button in ipairs(state.buttons) do
+        button.text = button.tag
         button.sprite:setScale(6)
         button.xml = button.sprite:newAnimation("xml", buttonxml, false)
         button.xml:play("idle")
@@ -40,7 +44,48 @@ function state:load()
 
         button.y = y
     end
+
     state:updateSelectedButton(state.selection)
+
+    if oldstate then
+        state.menu = 2
+        state.selection = oldstate.prevselection
+        state.boopleft = oldstate.boopleft
+        state.xml.current = oldstate.xml.current
+        state:updateMenuSize(state.menu)
+    end
+end
+
+function state:updateMenuSize(menu)
+    if menu == 1 then
+        state.logo:setPosition((love.graphics:getWidth() / 2) - (state.logo.image:getWidth() / 2), (love.graphics:getHeight() / 2) - (state.logo.image:getHeight() / 2))
+        state.logo:setScale(3)
+    elseif menu == 2 then
+        state.logo:setScale(1)
+        state.logo:setPosition(love.graphics:getWidth() / 3 - love.graphics:getWidth() / 4, love.graphics:getHeight() / 2 - love.graphics:getWidth() / 8)
+    end
+end
+
+function state:updateKeypressMenu(menu, key)
+    if menu == 1 then
+        state.menu = 2
+    elseif menu == 2 then
+        if key == "return" then
+            state:pressButton(state.selection)
+        elseif key == "up" then
+            state.selection = state.selection - 1
+        elseif key == "down" then
+            state.selection = state.selection + 1
+        elseif key == "escape" then
+            state.menu = 1
+        end
+
+        if key == "up" or key == "down" or key == "return" then
+            soundManager:playSound("cloud_poof", "wav", {new = true})
+            state.selection = state:updateSelectedButton(state.selection)
+        end
+    end
+    state:updateMenuSize(state.menu)
 end
 
 function state:updateSelectedButton(selection)
@@ -75,31 +120,13 @@ function state:pressButton(index)
     -- Do an action
     if tag == "freeplay" then
         stateManager:loadState("level")
+    elseif tag == "credits" then
+        stateManager:loadState("credits", state)
     end
 end
 
 function state:keypressed(key)
-    if state.menu == 1 then
-        state.menu = 2
-        state.logo:setScale(1)
-        state.logo:setPosition(love.graphics:getWidth() / 3 - love.graphics:getWidth() / 4, love.graphics:getHeight() / 2 - love.graphics:getWidth() / 8)
-    elseif state.menu == 2 then
-        if key == "return" then
-            state:pressButton(state.selection)
-        elseif key == "up" then
-            state.selection = state.selection - 1
-        elseif key == "down" then
-            state.selection = state.selection + 1
-        elseif key == "escape" then
-            state.menu = 1
-            state.logo:setPosition((love.graphics:getWidth() / 2) - (state.logo.image:getWidth() / 2), (love.graphics:getHeight() / 2) - (state.logo.image:getHeight() / 2))
-            state.logo:setScale(3)
-        end
-
-        if key == "up" or key == "down" or key == "return" then
-            state.selection = state:updateSelectedButton(state.selection)
-        end
-    end
+    state:updateKeypressMenu(state.menu, key)
 end
 
 function state:update(dt)

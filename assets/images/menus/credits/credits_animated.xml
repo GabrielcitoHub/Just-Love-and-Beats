@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="credits_animated.png">
+	<!-- Created with Aseprite FNF XML Exporter Unnoficial Plugin -->
+	<!-- <link> -->
+	<SubTexture name="boopleft0000" x="0" y="0" width="224" height="160" frameX="6" frameY="51" frameWidth="230" frameHeight="211"/>
+	<SubTexture name="boopleft0001" x="224" y="0" width="224" height="160" frameX="13" frameY="29" frameWidth="237" frameHeight="189"/>
+	<SubTexture name="boopleft0002" x="448" y="0" width="224" height="160" frameX="8" frameY="42" frameWidth="232" frameHeight="202"/>
+	<SubTexture name="boopleft0003" x="0" y="160" width="224" height="160" frameX="6" frameY="46" frameWidth="230" frameHeight="206"/>
+	<SubTexture name="boopright0000" x="224" y="160" width="224" height="160" frameX="6" frameY="51" frameWidth="230" frameHeight="211"/>
+	<SubTexture name="boopright0001" x="448" y="160" width="224" height="160" frameX="7" frameY="30" frameWidth="231" frameHeight="190"/>
+	<SubTexture name="boopright0002" x="0" y="320" width="224" height="160" frameX="4" frameY="50" frameWidth="228" frameHeight="210"/>
+	<SubTexture name="boopright0003" x="224" y="320" width="224" height="160" frameX="5" frameY="52" frameWidth="229" frameHeight="212"/>
+</TextureAtlas>
