@@ -8,7 +8,7 @@ function fps:draw()
     local Fps = fps:getFps()
     if Fps < 10 then
         love.graphics.setColor(1, 0, 0)
-    elseif fps < 20 then
+    elseif Fps < 20 then
         love.graphics.setColor(1, 0.5, 0.5)
     else
         love.graphics.setColor(1, 1, 1)

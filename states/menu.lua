@@ -45,8 +45,6 @@ function state:load(oldstate)
         button.y = y
     end
 
-    state:updateSelectedButton(state.selection)
-
     if oldstate then
         state.menu = 2
         state.selection = oldstate.prevselection
@@ -54,6 +52,8 @@ function state:load(oldstate)
         state.xml.current = oldstate.xml.current
         state:updateMenuSize(state.menu)
     end
+
+    state:updateSelectedButton(state.selection)
 
     soundManager:playMusic("Strolling Mastered","wav")
 end
