@@ -1,9 +1,11 @@
-return function(tag, path, x, y, w, h)
+local self = {}
+function self:new(tag, path, x, y, w, h)
     x = x or 0
     y = y or 0
     w = w or 920
     h = h or 300
-    local self = {
+
+    local btn = {
         tag = tag,
         text = "",
         sprite = Sprite:new(tag, path, x, y),
@@ -13,22 +15,24 @@ return function(tag, path, x, y, w, h)
         h = h
     }
 
-    function self:draw(x, y, w, h)
-        x = x or self.x
-        y = y or self.y
-        w = w or self.w
-        h = h or self.h
-        local sx = w / self.sprite.image:getWidth()
-        local sy = h / self.sprite.image:getHeight()
+    function btn:draw(x, y, w, h)
+        x = x or btn.x
+        y = y or btn.y
+        w = w or btn.w
+        h = h or btn.h
+        local sx = w / btn.sprite.image:getWidth()
+        local sy = h / btn.sprite.image:getHeight()
 
-        self.sprite.x = x
-        self.sprite.y = y
-        self.sprite.sx = sx
-        self.sprite.sy = sy
-        self.sprite:draw(x, y, w, h)
+        btn.sprite.x = x
+        btn.sprite.y = y
+        btn.sprite.sx = sx
+        btn.sprite.sy = sy
+        btn.sprite:draw(x, y, w, h)
 
-        if self.text then
-            love.graphics.print(self.text, x, y + (h / 6), 0, sx, sy / 2)
+        if btn.text then
+            love.graphics.print(btn.text, x, y + (h / 6), 0, sx, sy / 2)
         end
     end
-return self end
+    return btn
+end
+return self

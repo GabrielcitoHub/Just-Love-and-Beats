@@ -17,23 +17,23 @@ function state:load(oldstate)
     state.xml:play("boopleft",100)
     state.logo:center()
 
-    -- Create the buttons
+    -- Create and load the buttons
     local buttonimg = "assets/images/menus/button.png"
     local buttonxml = "assets/images/menus/button.xml"
-    table.insert(state.buttons, buttons("story", buttonimg, love.graphics:getWidth() / 2))
-    table.insert(state.buttons, buttons("freeplay", buttonimg, love.graphics:getWidth() / 2))
-    table.insert(state.buttons, buttons("party", buttonimg, love.graphics:getWidth() / 2))
-    table.insert(state.buttons, buttons("mods", buttonimg, love.graphics:getWidth() / 2))
-    table.insert(state.buttons, buttons("options", buttonimg, love.graphics:getWidth() / 2))
-    table.insert(state.buttons, buttons("credits", buttonimg, love.graphics:getWidth() / 2))
-
-    -- Load animations
-    for i,button in ipairs(state.buttons) do
+    local bts = {"story", "freeplay", "party", "mods", "options", "credits"}
+    local x = love.graphics:getWidth() / 2
+    for i,button in ipairs(bts) do
+        local button = buttons:new(button, buttonimg, x)
         button.text = button.tag
         button.sprite:setScale(6)
         button.xml = button.sprite:newAnimation("xml", buttonxml, false)
         button.xml:play("idle")
 
+        table.insert(state.buttons, button)
+    end
+
+    -- Updates their Y position after creation (bc it doesn't work when creating for some reason)
+    for i,button in ipairs(state.buttons) do
         -- Space across screen
         local N = #state.buttons
         local screenH = love.graphics.getHeight()
@@ -125,7 +125,7 @@ function state:updateSelectedButton(selection)
 end
 
 function state:pressButton(index)
-    -- Get button tag
+    -- Get button
     local button = state.buttons[index]
     local tag = button.tag
 

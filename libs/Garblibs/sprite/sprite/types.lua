@@ -1,6 +1,6 @@
 ---@class Sprite
 local self = {
-    cwd = (...):gsub('%.init$', '') .. "."
+    cwd = (...):match('^(.*[%./])[^%.%/]+$') or ''
 }
 
 -- Load
@@ -121,7 +121,8 @@ function self:setSize(width, height) end
 ---@return Animation
 -- Loads an animation file
 function self:newAnimation(tag, path, loop)
-    return require(self.cwd .. "sprite.animation")(self)
+    local anim = {}
+    return anim(self, tag, path, loop)
 end
 
 ---@param tag string

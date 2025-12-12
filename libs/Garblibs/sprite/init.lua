@@ -4,14 +4,18 @@ local self = spritemanager
 -- Enable while testing main.lua
 self.debug = false
 
-self.cwd = ""
-if not self.debug then
-    self.cwd = (...):gsub('%.init$', '') .. "."
+local name = ...
+if name ~= "init" then
+    self.cwd = name .. "."
+else
+    self.cwd = ""
 end
+
 Cache = Cache or require(self.cwd .. "cache")
 self.sprites = {}
 self.layers = {}
 
+---@return Sprite
 function self:_new(tag, path, x, y)
     local spr = require(self.cwd .. "objects.sprite")(tag, path, x, y, {manager = self})
     spr:load()
@@ -19,6 +23,7 @@ function self:_new(tag, path, x, y)
     return spr
 end
 
+---@return Layer
 function self:_newLayer(tag, order, sprites)
     local layer = require(self.cwd .. "objects.layer")(tag, order, sprites, {manager = self})
     layer:load()

@@ -25,7 +25,7 @@ end
 
 local function load()
     if love.filesystem.getInfo("settings.json") then
-        print("Loading settings data")
+        -- print("Loading settings data")
 
         local dataString = love.filesystem.read("settings.json")
         self.loadedSettings = json.decode(dataString)
@@ -203,5 +203,5 @@ function self:keypressed(key)
         end
     end
 end
---end
+
 return self
